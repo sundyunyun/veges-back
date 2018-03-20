@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dhu.sun.vege.mapper.UserMapper">
+    <resultMap id="BaseMap" type="dhu.sun.vege.entity.User">
+        <result property="id" column="id"/>
+        <result property="roleId" column="role_id"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="name" column="name"/>
+        <result property="gender" column="gender"/>
+        <result property="age" column="age"/>
+        <result property="email" column="email"/>
+        <result property="tel" column="tel"/>
+        <result property="state" column="state"/>
+        <result property="location" column="location"/>
+        <result property="storeId" column="store_id"/>
+        <result property="buyetId" column="buyer_id"/>
+        <result property="isExpired" column="is_expired"/>
+        <result property="isLocked" column="is_locked"/>
+        <result property="isEnabled" column="is_enabled"/>
+
+        <result property="objectVersionNumber" column="OBJECT_VERSION_NUMBER"/>
+        <result property="createdBy" column="CREATED_BY"/>
+        <result property="creationDate" column="CREATION_DATE"/>
+        <result property="lastUpdatedBy" column="LAST_UPDATED_BY"/>
+        <result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
+    </resultMap>
+    <select id="selectUserByUsername" resultMap="BaseMap">
+        SELECT * FROM sys_user WHERE username=#{username}
+    </select>
+
+    <!--<select id="selectByAuthor" resultMap="BaseMap">
+        SELECT
+        *
+        FROM
+        ele_weekly
+        WHERE
+        flag_status = 1
+        <if test="userId != null">
+            AND user_id = #{userId}
+        </if>
+        <if test="beginTime != null">
+            AND unix_timestamp(LAST_UPDATE_DATE) &gt;= #{beginTime}
+        </if>
+        <if test="endTime != null">
+            AND unix_timestamp(LAST_UPDATE_DATE) &lt;= #{endTime}
+        </if>
+        ORDER BY commit_time DESC
+    </select>
+
+    &lt;!&ndash; 条件查询 &ndash;&gt;
+    <select id="selectByDate" resultMap="BaseMap">
+        SELECT ele_weekly.*
+        FROM ele_weekly
+        <where>
+            <if test="userId!= null and userId!=''">
+                AND ele_weekly.user_id=#{userId}
+            </if>
+            <if test="flagStatus != null">
+                AND ele_weekly.flag_status=#{flagStatus}
+            </if>
+            <if test="beginTime != null and beginTime != ''">
+                AND ele_weekly.commit_time>=#{beginTime}
+            </if>
+            <if test="endTime != null and endTime !=''">
+                AND ele_weekly.commit_time &lt;= #{endTime}
+            </if>
+
+        </where>
+    </select>
+
+    <select id="selectOneByCondition" resultMap="BaseMap">
+        SELECT ele_weekly.*
+        FROM ele_weekly
+        <where>
+            <if test="id!= null and id!=''">
+                AND ele_weekly.id=#{id}
+            </if>
+            <if test="userId!= null and userId!=''">
+                AND ele_weekly.user_id=#{userId}
+            </if>
+        </where>
+    </select>
+    <select id="selectByWeek" resultType="me.ele.zb.model.Weekly">
+        SELECT DISTINCT
+        w.*
+        FROM
+        ele_weekly w,ele_send e
+        WHERE
+        w.flag_status = 1
+        AND e.user_id = #{userId}
+        AND e.weekly_id = w.id
+        <if test="sendId != null">
+            AND w.user_id = #{sendId}
+        </if>
+        <if test="beginTime != null">
+            AND unix_timestamp(w.LAST_UPDATE_DATE) &gt;= #{beginTime}
+        </if>
+        <if test="endTime != null">
+            AND unix_timestamp(w.LAST_UPDATE_DATE) &lt;= #{endTime}
+        </if>
+        ORDER BY w.commit_time DESC
+    </select>
+    <select id="detailWeekly" resultType="me.ele.zb.model.Weekly">
+        SELECT DISTINCT
+        *
+        FROM
+        ele_weekly
+        WHERE
+        1 = 1
+        <if test="weeklyId != null">
+            AND id = #{weeklyId}
+        </if>
+        ORDER BY commit_time DESC
+    </select>-->
+</mapper>
