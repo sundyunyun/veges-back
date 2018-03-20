@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="dhu.sun.vege.mapper.UserMapper">
-    <resultMap id="BaseMap" type="dhu.sun.vege.entity.User">
+<mapper namespace="dhu.sun.vege.mapper.InstoreItemMapper">
+    <resultMap id="BaseMap" type="dhu.sun.vege.entity.InstoreItem">
         <result property="id" column="id"/>
-        <result property="roleId" column="role_id"/>
-        <result property="deptId" column="dept_id"/>
-        <result property="username" column="username"/>
-        <result property="password" column="password"/>
+        <result property="instoreId" column="instore_id"/>
+        <result property="vegesId" column="veges_id"/>
         <result property="name" column="name"/>
-        <result property="gender" column="gender"/>
-        <result property="age" column="age"/>
-        <result property="email" column="email"/>
-        <result property="tel" column="tel"/>
-        <result property="state" column="state"/>
-        <result property="location" column="location"/>
-        <result property="storeId" column="store_id"/>
-        <result property="buyerId" column="buyer_id"/>
-        <result property="isExpired" column="is_expired"/>
-        <result property="isLocked" column="is_locked"/>
-        <result property="isEnabled" column="is_enabled"/>
+        <result property="number" column="number"/>
+        <result property="price" column="price"/>
+        <result property="total" column="total"/>
 
         <result property="objectVersionNumber" column="OBJECT_VERSION_NUMBER"/>
         <result property="createdBy" column="CREATED_BY"/>
@@ -26,9 +16,7 @@
         <result property="lastUpdatedBy" column="LAST_UPDATED_BY"/>
         <result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
     </resultMap>
-    <select id="selectUserByUsername" resultMap="BaseMap">
-        SELECT * FROM sys_user WHERE username=#{username}
-    </select>
+
 
     <!--<select id="selectByAuthor" resultMap="BaseMap">
         SELECT

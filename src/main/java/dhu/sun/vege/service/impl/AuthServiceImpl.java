@@ -1,6 +1,8 @@
 package dhu.sun.vege.service.impl;
 
+import dhu.sun.vege.entity.Department;
 import dhu.sun.vege.entity.User;
+import dhu.sun.vege.mapper.DepartmentMapper;
 import dhu.sun.vege.mapper.UserMapper;
 import dhu.sun.vege.model.core.JwtUserDetails;
 import dhu.sun.vege.model.view.LoginView;
@@ -31,6 +33,9 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private DepartmentMapper departmentMapper;
+
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
@@ -48,6 +53,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public User register(User user) {
+        Department department;
         String username = user.getUsername();
         if (userMapper.selectUserByUsername(username) != null) {
             return null;
@@ -57,11 +63,13 @@ public class AuthServiceImpl implements AuthService {
         user.setPassword(encoder.encode(rawPassword));
         user.setRoleId(new Long(1));
         user.setDeptId(new Long(1));
-        // 客户角色、部门设定
-        //部门人数要加一
-
 //        userToAdd.setRoles(asList("ROLE_USER"));
         userMapper.insert(user);
+
+        //部门人数要加一客户角色、部门设定
+        department=departmentMapper.selectByPrimaryKey(user.getDeptId());
+        department.setNumber(department.getNumber()+1);
+        departmentMapper.updateByPrimaryKey(department);
         //返回给前台user对象
         return userMapper.selectByPrimaryKey(user.getId());
     }

@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="dhu.sun.vege.mapper.UserMapper">
-    <resultMap id="BaseMap" type="dhu.sun.vege.entity.User">
+<mapper namespace="dhu.sun.vege.mapper.OutStoreMapper">
+    <resultMap id="BaseMap" type="dhu.sun.vege.entity.Outstore">
         <result property="id" column="id"/>
-        <result property="roleId" column="role_id"/>
-        <result property="deptId" column="dept_id"/>
-        <result property="username" column="username"/>
-        <result property="password" column="password"/>
-        <result property="name" column="name"/>
-        <result property="gender" column="gender"/>
-        <result property="age" column="age"/>
-        <result property="email" column="email"/>
-        <result property="tel" column="tel"/>
-        <result property="state" column="state"/>
-        <result property="location" column="location"/>
+        <result property="driverId" column="driver_id"/>
+        <result property="orderId" column="order_id"/>
         <result property="storeId" column="store_id"/>
-        <result property="buyerId" column="buyer_id"/>
-        <result property="isExpired" column="is_expired"/>
-        <result property="isLocked" column="is_locked"/>
-        <result property="isEnabled" column="is_enabled"/>
+        <result property="keeperId" column="keeper_id"/>
+        <result property="totalprice" column="totalprice"/>
+        <result property="totalweight" column="totalweight"/>
+        <result property="state" column="state"/>
 
         <result property="objectVersionNumber" column="OBJECT_VERSION_NUMBER"/>
         <result property="createdBy" column="CREATED_BY"/>
