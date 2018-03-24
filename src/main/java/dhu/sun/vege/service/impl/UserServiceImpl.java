@@ -81,6 +81,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) {
+        User u;
         //发生任何异常,返回空
         try {
             //如果修改密码,需要哈希编码
@@ -91,7 +92,7 @@ public class UserServiceImpl implements UserService {
             //设置最后更新时间
            // user.setLastUpdateDate();
             //用户名绝不允许修改
-            user.setUsername(null);
+            /*user.setUsername(null);*/
             int a = userMapper.updateByPrimaryKeySelective(user);
             if (a == 0) {
                 return null;
@@ -107,17 +108,19 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User updateUserOneself(Long id, String username, String password, User user) {
+    public User updateUserOneself(User user) {
         try {
             //个人不允许修改的部分
-            user.setIsEnabled(null);
+           /* user.setIsEnabled(null);
             user.setIsExpired(null);
-            user.setIsLocked(null);
-            if (validatePassword(id, username, password)) {
+            user.setIsLocked(null);*/
+   /*         if (validatePassword(id, username, password)) {
                 user.setId(id);
                 return updateUser(user);
             }
-            return null;
+            return null;*/
+           /* user.setId(id);*/
+            return updateUser(user);
         } catch (Exception e) {//出现任何异常,返回空
             return null;
         }

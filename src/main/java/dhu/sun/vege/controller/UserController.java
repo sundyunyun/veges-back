@@ -49,11 +49,11 @@ public class UserController {
     /**
      * 修改自己的用户信息
      */
-    @PutMapping("/user/{id}")
+    @PutMapping("/user/change")
     @ApiOperation("修改自己的用户信息")
-    public User updateUserOneself(@PathVariable(value = "id") Long id, @RequestParam String username, @RequestParam String password,
-                                  @RequestBody User user) {
-        return userService.updateUserOneself(id, username, password, user);
+    @PreAuthorize("hasAnyAuthority('all')")
+    public User updateUserOneself(@RequestBody User user) {
+        return userService.updateUserOneself(user);
     }
 
     /**

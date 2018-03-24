@@ -49,7 +49,7 @@ public interface UserService {
     /**
      * 修改自己的信息
      */
-    User updateUserOneself(Long id, String username, String password, User user);
+    User updateUserOneself(User user);
 
 
 }

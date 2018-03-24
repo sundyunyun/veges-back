@@ -67,6 +67,8 @@ public class AuthServiceImpl implements AuthService {
            // user.setCreationDate();
             user.setRoleId(new Long(1));
             user.setDeptId(new Long(1));
+           /* user.setIsEnabled(0001);*/
+
             userMapper.insert(user);
             //返回创建成功的用户
             // 部门人数要加一客户角色、部门设定
