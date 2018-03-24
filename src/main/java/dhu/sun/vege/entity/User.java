@@ -2,9 +2,7 @@ package dhu.sun.vege.entity;
 
 import dhu.sun.vege.entity.core.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * 用户信息表
@@ -18,6 +16,7 @@ import javax.persistence.Table;
 public class User extends BaseEntity {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "role_id")

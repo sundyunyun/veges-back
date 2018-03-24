@@ -7,6 +7,7 @@ import dhu.sun.vege.util.core.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +38,7 @@ public class AuthController {
     /user       PUT   UPDATE
     /user      DELETE   delete
      */
-    public ResponseEntity<LoginView> getToken(HttpServletRequest request,@RequestParam  String username, @RequestParam  String password) throws AuthenticationException {
+    public LoginView getToken(@RequestParam  String username, @RequestParam  String password) throws AuthenticationException {
         LoginView view = authService.login(username, password);
         /*String token = jwtTokenUtil.getTokenFromRequest(request);
         //如果token过期
@@ -50,7 +51,7 @@ public class AuthController {
         }*/
 
 
-        return new ResponseEntity(view, HttpStatus.OK);
+        return view;
     }
 
     /*@RequestMapping(value = "/refresh", method = RequestMethod.GET)
@@ -66,6 +67,7 @@ public class AuthController {
     }*/
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
+    //@PreAuthorize("hasAnyAuthority('all')")
     public User register(@RequestBody User addedUser) throws AuthenticationException {
         return authService.register(addedUser);
     }

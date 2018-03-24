@@ -30,6 +30,9 @@
         SELECT * FROM sys_user WHERE username=#{username}
     </select>
 
+    <update id="updateUserByRoleId">
+        UPDATE sys_user SET role_id = 0 WHERE role_id = #{roleId}
+    </update>
     <!--<select id="selectByAuthor" resultMap="BaseMap">
         SELECT
         *

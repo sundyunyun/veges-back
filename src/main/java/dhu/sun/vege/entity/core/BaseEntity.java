@@ -1,6 +1,7 @@
 package dhu.sun.vege.entity.core;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import dhu.sun.vege.constants.AppConst;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.Date;
  */
 public class BaseEntity {
 
-    @Column(name = "object_version_number")
+  /*  @Column(name = "object_version_number")
     private Long objectVersionNumber;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
@@ -22,6 +23,22 @@ public class BaseEntity {
     private String createdBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @Column(name = "last_update_date")
+    private Date lastUpdateDate;
+
+    @Column(name = "last_updated_by")
+    private String lastUpdatedBy;*/
+  @Column(name = "object_version_number")
+  private Long objectVersionNumber;
+
+    @JsonFormat(pattern = AppConst.FORMAT_SECOND, timezone = "GMT+8")
+    @Column(name = "creation_date")
+    private Date creationDate;
+
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @JsonFormat(pattern = AppConst.FORMAT_SECOND, timezone = "GMT+8")
     @Column(name = "last_update_date")
     private Date lastUpdateDate;
 

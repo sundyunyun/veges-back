@@ -54,30 +54,49 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public User register(User user) {
         Department department;
-        String username = user.getUsername();
-        if (userMapper.selectUserByUsername(username) != null) {
+        try {
+            String username = user.getUsername();
+            //用户名不允许重复
+            if (userMapper.selectUserByUsername(username) != null) {
+                return null;
+            }
+            //对密码进行强哈希编码
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setPassword(encoder.encode(user.getPassword()));
+            //设置创建时间
+           // user.setCreationDate();
+            user.setRoleId(new Long(1));
+            user.setDeptId(new Long(1));
+            userMapper.insert(user);
+            //返回创建成功的用户
+            // 部门人数要加一客户角色、部门设定
+            department=departmentMapper.selectByPrimaryKey(user.getDeptId());
+            department.setNumber(department.getNumber()+1);
+            departmentMapper.updateByPrimaryKey(department);
+            return userMapper.selectByPrimaryKey(user.getId());
+        } catch (Exception e) {
             return null;
         }
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String rawPassword = user.getPassword();
-        user.setPassword(encoder.encode(rawPassword));
-        user.setRoleId(new Long(1));
-        user.setDeptId(new Long(1));
-//        userToAdd.setRoles(asList("ROLE_USER"));
-        userMapper.insert(user);
 
-        //部门人数要加一客户角色、部门设定
-        department=departmentMapper.selectByPrimaryKey(user.getDeptId());
-        department.setNumber(department.getNumber()+1);
-        departmentMapper.updateByPrimaryKey(department);
-        //返回给前台user对象
-        return userMapper.selectByPrimaryKey(user.getId());
+//        userToAdd.setRoles(asList("ROLE_USER"));
     }
 
     @Override
     public LoginView login(String username, String password) {
+
         LoginView view = new LoginView();
-        UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        User user = userMapper.selectUserByUsername(username);
+        //如果用户名错误
+        if (user == null) {
+            return null;
+        }
+        //密码错误,返回空
+        if (!encoder.matches(password, user.getPassword())) {
+            return null;
+        }
+        UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, user.getPassword());
         // Perform the security
         Authentication authentication = authenticationManager.authenticate(upToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);

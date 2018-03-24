@@ -12,4 +12,5 @@ import dhu.sun.vege.util.core.BaseMapper;
 
 public interface UserMapper extends BaseMapper<User> {
     User selectUserByUsername(String username);
+    void updateUserByRoleId(Long roleId);
 }
