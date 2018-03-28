@@ -3,6 +3,7 @@ package dhu.sun.vege.service;
 
 import dhu.sun.vege.entity.User;
 import dhu.sun.vege.model.view.LoginView;
+import sun.rmi.server.UnicastServerRef;
 
 import java.util.List;
 
@@ -51,5 +52,9 @@ public interface UserService {
      */
     User updateUserOneself(User user);
 
+    /**
+     * 根据角色ID获取用户信息
+     */
+    List<User> getAllUserByRoleId(Long roleId);
 
 }

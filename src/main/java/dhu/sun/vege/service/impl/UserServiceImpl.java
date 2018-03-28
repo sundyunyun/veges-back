@@ -127,6 +127,16 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public List<User> getAllUserByRoleId(Long roleId)
+    {
+        try{
+            return userMapper.getAllUserByRoleId(roleId);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
 /*    @Override
     public LoginView login(String username, String password) {
         LoginView view = new LoginView();

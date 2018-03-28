@@ -3,6 +3,8 @@ package dhu.sun.vege.mapper;
 import dhu.sun.vege.entity.User;
 import dhu.sun.vege.util.core.BaseMapper;
 
+import java.util.List;
+
 /**
  * Description
  *
@@ -13,4 +15,5 @@ import dhu.sun.vege.util.core.BaseMapper;
 public interface UserMapper extends BaseMapper<User> {
     User selectUserByUsername(String username);
     void updateUserByRoleId(Long roleId);
+    List<User> getAllUserByRoleId(Long roleId);
 }

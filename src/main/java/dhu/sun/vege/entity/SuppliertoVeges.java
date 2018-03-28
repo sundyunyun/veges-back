@@ -16,7 +16,7 @@ public class SuppliertoVeges extends BaseEntity {
     private Long supplierId;
 
     @Column(name = "veges_id")
-    private Long veges_id;
+    private Long vegesId;
 
     public Long getSupplierId() {
         return supplierId;
@@ -26,11 +26,11 @@ public class SuppliertoVeges extends BaseEntity {
         this.supplierId = supplierId;
     }
 
-    public Long getVeges_id() {
-        return veges_id;
+    public Long getVegesId() {
+        return vegesId;
     }
 
-    public void setVeges_id(Long veges_id) {
-        this.veges_id = veges_id;
+    public void setVegesId(Long vegesId) {
+        this.vegesId = vegesId;
     }
 }

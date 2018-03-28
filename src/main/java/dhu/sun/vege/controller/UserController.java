@@ -2,6 +2,7 @@ package dhu.sun.vege.controller;
 
 
 import dhu.sun.vege.entity.User;
+import dhu.sun.vege.model.view.SupplierView;
 import dhu.sun.vege.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,11 +68,23 @@ public class UserController {
     }
 
     /**
+     * 获取角色信息
+     */
+    @GetMapping("/user/suppliers")
+    @ApiOperation("根据角色Id获取全部该角色用户信息")
+   /* @PreAuthorize("hasAnyAuthority('all')")*/
+    public List<User> getAllUserByRoleId(@RequestParam Long roleId)
+    {
+        return userService.getAllUserByRoleId(roleId);
+
+    }
+
+    /**
      * 根据id获取用户信息
      */
     @GetMapping("/user")
     @ApiOperation(("根据id获取用户信息"))
-    @PreAuthorize("hasAnyAuthority('all')")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
     public User getOneUser(@RequestParam Long id) {
         return userService.getUserById(id);
     }

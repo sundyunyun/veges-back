@@ -14,6 +14,15 @@
         <result property="lastUpdatedBy" column="LAST_UPDATED_BY"/>
         <result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
     </resultMap>
+    <select id="getVegesListBySupplierId" resultMap="BaseMap">
+          SELECT veges.* FROM supplier_veges,veges
+        WHERE supplier_veges.supplier_id = #{supplierId}
+        AND veges.id= supplier_veges.veges_id
+    </select>
+
+    <select id="selectVegesByName" resultMap="BaseMap">
+        SELECT * FROM veges WHERE name=#{name}
+    </select>
 
     <!--<select id="selectByAuthor" resultMap="BaseMap">
         SELECT
