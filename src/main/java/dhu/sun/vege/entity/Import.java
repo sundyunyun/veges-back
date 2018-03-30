@@ -29,7 +29,7 @@ public class Import extends BaseEntity{
     private BigDecimal totalprice;
 
     @Column(name = "totalweight")
-    private int totalweight;
+    private Double totalweight;
 
     @Column(name = "store_id")
     private Long storeId;
@@ -80,11 +80,11 @@ public class Import extends BaseEntity{
         this.totalprice = totalprice;
     }
 
-    public int getTotalweight() {
+    public Double getTotalweight() {
         return totalweight;
     }
 
-    public void setTotalweight(int totalweight) {
+    public void setTotalweight(Double totalweight) {
         this.totalweight = totalweight;
     }
 

@@ -24,4 +24,20 @@ public interface AppConst {
 
     long DAY_MILLIS = 1000 * 60 * 60 * 24;
     long HOUR_MILLS = 1000 * 60 * 60;
+
+    /**
+     * 邮箱验证
+     */
+    String EMAIL_REGULAR_EXPRESSION = "^[\\w.-]+@[\\w-]+(\\.[\\w-]+)+$";
+
+    /**
+     * 用户名验证:字母开头,字母数字下划线组成的   4-16位 字符串
+     */
+    String USERNAME_REGULAR_EXPRESSION = "^[a-zA-Z]{1}[a-zA-Z0-9_]{3,15}$";
+
+    /**
+     * 密码:字母数字下划线  6-18位
+     */
+    // TODO: 2018/2/13 密码的正则表达式需要完善
+    String PASSWORD_REGULAR_EXPRESSION = "^[a-zA-Z0-9_]{6,18}$";
 }

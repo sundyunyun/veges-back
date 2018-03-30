@@ -29,7 +29,7 @@ public class ImportItem extends BaseEntity{
     private BigDecimal price;
 
     @Column(name = "number")
-    private int number;
+    private Double number;
 
     @Column(name = "total")
     private BigDecimal total;
@@ -74,11 +74,11 @@ public class ImportItem extends BaseEntity{
         this.price = price;
     }
 
-    public int getNumber() {
+    public Double getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Double number) {
         this.number = number;
     }
 
