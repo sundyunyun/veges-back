@@ -38,4 +38,9 @@ public class VegesServiceImpl implements VegesService {
         }
         return veges;
     }
+
+    @Override
+    public List<Veges> getAllVeges(){
+        return vegesMapper.selectAll();
+    }
 }

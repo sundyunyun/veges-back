@@ -26,13 +26,13 @@ public class ImportItem extends BaseEntity{
     private  String name;
 
     @Column(name = "price")
-    private BigDecimal price;
+    private Double price;
 
     @Column(name = "number")
     private Double number;
 
     @Column(name = "total")
-    private BigDecimal total;
+    private Double total;
 
     public Long getId() {
         return id;
@@ -66,13 +66,7 @@ public class ImportItem extends BaseEntity{
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
 
     public Double getNumber() {
         return number;
@@ -82,11 +76,19 @@ public class ImportItem extends BaseEntity{
         this.number = number;
     }
 
-    public BigDecimal getTotal() {
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(BigDecimal total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 }

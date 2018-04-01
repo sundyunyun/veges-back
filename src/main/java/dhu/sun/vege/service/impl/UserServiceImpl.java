@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -90,7 +91,7 @@ public class UserServiceImpl implements UserService {
                 user.setPassword(encoder.encode(user.getPassword()));
             }
             //设置最后更新时间
-           // user.setLastUpdateDate();
+           user.setLastUpdateDate(new Date());
             //用户名绝不允许修改
             /*user.setUsername(null);*/
             int a = userMapper.updateByPrimaryKeySelective(user);

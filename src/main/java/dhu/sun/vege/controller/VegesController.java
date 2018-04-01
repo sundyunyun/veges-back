@@ -31,4 +31,11 @@ public class VegesController {
     {
         return vegesService.getVegesListBySupplierId(supplierId);
     }
+
+    @GetMapping("/allveges")
+    @ApiOperation("获取数据库所有的蔬菜")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public List<Veges> getAllVeges(){
+        return vegesService.getAllVeges();
+    }
 }

@@ -26,7 +26,7 @@ public class Import extends BaseEntity{
     private Long driverId;
 
     @Column(name = "totalprice")
-    private BigDecimal totalprice;
+    private Double totalprice;
 
     @Column(name = "totalweight")
     private Double totalweight;
@@ -72,11 +72,11 @@ public class Import extends BaseEntity{
         this.driverId = driverId;
     }
 
-    public BigDecimal getTotalprice() {
+    public Double getTotalprice() {
         return totalprice;
     }
 
-    public void setTotalprice(BigDecimal totalprice) {
+    public void setTotalprice(Double totalprice) {
         this.totalprice = totalprice;
     }
 
