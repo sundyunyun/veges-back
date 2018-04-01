@@ -1,11 +1,14 @@
 package dhu.sun.vege.controller;
 
 import dhu.sun.vege.entity.Import;
+import dhu.sun.vege.model.view.ImpolistView;
 import dhu.sun.vege.service.ImportService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by think on 2018/3/30.
@@ -35,6 +38,17 @@ public class ImportController {
     /*@PreAuthorize("hasAnyAuthority('all')")*/
     public Import addImportDone(@RequestParam Long importId){
         return importService.addImportDone(importId);
+    }
+
+    /**
+     * 根据采购员id获取进货单列表
+     */
+    @GetMapping("/getimpo")
+    @ApiOperation("根据采购员id获取对应进货单")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public List<ImpolistView> getImpoBybuyerId(@RequestParam Long buyerId){
+
+        return importService.getImpoBybuyerId(buyerId);
     }
 
 }

@@ -19,6 +19,9 @@
         <result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
     </resultMap>
 
+<select id="getImpoBybuyerId" resultMap="BaseMap">
+    SELECT * FROM import WHERE buyer_id=#{buyerId}
+</select>
 
     <!--<select id="selectByAuthor" resultMap="BaseMap">
         SELECT
