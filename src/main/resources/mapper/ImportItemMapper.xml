@@ -17,6 +17,10 @@
         <result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
     </resultMap>
 
+    <select id="getAllByImportId" resultMap="BaseMap">
+        SELECT * FROM importitem WHERE import_id=#{importId}
+    </select>
+
     <!--<select id="selectByAuthor" resultMap="BaseMap">
         SELECT
         *

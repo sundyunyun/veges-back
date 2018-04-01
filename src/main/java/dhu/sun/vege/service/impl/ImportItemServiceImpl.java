@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by think on 2018/4/1.
@@ -33,6 +34,15 @@ public class ImportItemServiceImpl implements ImportItemService {
                  return null;
              }
 
+         }catch (Exception e){
+             return null;
+         }
+     }
+
+     @Override
+    public List<ImportItem> getAllByImportId(Long importId){
+         try{
+             return importItemMapper.getAllByImportId(importId);
          }catch (Exception e){
              return null;
          }

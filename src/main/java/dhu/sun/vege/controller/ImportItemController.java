@@ -6,10 +6,9 @@ import dhu.sun.vege.service.ImportService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by think on 2018/4/1.
@@ -28,4 +27,12 @@ public class ImportItemController {
     public ImportItem addImportItem(@RequestBody ImportItem importItem){
         return importItemService.addImportItem(importItem);
     }
+
+    @GetMapping("/getbyimpoId")
+    @ApiOperation("根据importId获取详情记录")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public List<ImportItem> getAllByImportId(@RequestParam Long importId){
+        return importItemService.getAllByImportId(importId);
+    }
+
 }

@@ -49,8 +49,6 @@ public class AuthController {
             view.setMsg("这是旧的token");
             view.setToken(token);
         }*/
-
-
         return view;
     }
 

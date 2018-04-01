@@ -20,7 +20,7 @@ import java.util.List;
  */
 // TODO: 2018/2/13 完成后进行权限控制的调试
 @RestController
-@RequestMapping(value = "/api", produces = {"text/html;charset=UTF-8;", "application/json;"})
+@RequestMapping( "/api")
 public class UserController {
 
     @Autowired

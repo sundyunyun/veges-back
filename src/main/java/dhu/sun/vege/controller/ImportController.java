@@ -43,7 +43,7 @@ public class ImportController {
     /**
      * 根据采购员id获取进货单列表
      */
-    @GetMapping("/getimpo")
+    @GetMapping("/getimpos")
     @ApiOperation("根据采购员id获取对应进货单")
     /*@PreAuthorize("hasAnyAuthority('all')")*/
     public List<ImpolistView> getImpoBybuyerId(@RequestParam Long buyerId){

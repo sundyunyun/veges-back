@@ -76,9 +76,9 @@ public class ImportServiceImpl implements ImportService {
             StoreHouse storeHouse;
             List<ImpolistView> impolistViews =new ArrayList<>();
             List<Import> impolist=importMapper.getImpoBybuyerId(buyerId);
-            int i=impolist.size();
+          /*  int i=impolist.size();*/
 
-            for(i=i-1;i>=0;i--)
+            for(int i=0;i<impolist.size();i++)
             {
                 ImpolistView impolistView=new ImpolistView();
                 impolistView.setImpo(impolist.get(i));
