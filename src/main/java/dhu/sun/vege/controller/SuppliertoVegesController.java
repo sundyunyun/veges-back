@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by think on 2018/3/28.
  */
 @RestController
-@RequestMapping(value = "/api", produces = {"text/html;charset=UTF-8;", "application/json;"})
+@RequestMapping("/api")
 public class SuppliertoVegesController {
     @Autowired
     private SuppliertoVegesService suppliertoVegesService;

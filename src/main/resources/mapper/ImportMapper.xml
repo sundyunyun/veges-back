@@ -23,6 +23,14 @@
     SELECT * FROM import WHERE buyer_id=#{buyerId}
 </select>
 
+    <select id="getImpoBydriverId" resultMap="BaseMap">
+        SELECT *FROM import WHERE driver_id=#{driverId}
+    </select>
+
+    <select id="getCurrentByDrivId" resultMap="BaseMap">
+        SELECT *FROM import WHERE driver_id=#{driverId} AND state="进货已完成"
+    </select>
+
     <!--<select id="selectByAuthor" resultMap="BaseMap">
         SELECT
         *

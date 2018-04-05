@@ -1,9 +1,6 @@
 package dhu.sun.vege.model.view;
 
-import dhu.sun.vege.entity.Auth;
-import dhu.sun.vege.entity.Import;
-import dhu.sun.vege.entity.Role;
-import dhu.sun.vege.entity.User;
+import dhu.sun.vege.entity.*;
 
 import java.util.List;
 
@@ -17,6 +14,8 @@ import java.util.List;
 public class ImpolistView {
 
    private Import impo;
+   private User supplier;
+   private StoreHouse storeHouse;
    private String suppname;
    private String drivname;
    private String storename;
@@ -28,6 +27,22 @@ public class ImpolistView {
 
     public void setImpo(Import impo) {
         this.impo = impo;
+    }
+
+    public User getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(User supplier) {
+        this.supplier = supplier;
+    }
+
+    public StoreHouse getStoreHouse() {
+        return storeHouse;
+    }
+
+    public void setStoreHouse(StoreHouse storeHouse) {
+        this.storeHouse = storeHouse;
     }
 
     public String getSuppname() {

@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface ImportMapper extends BaseMapper<Import> {
     List<Import> getImpoBybuyerId(Long buyerId);
+    List<Import> getImpoBydriverId(Long driverId);
+    List<Import> getCurrentByDrivId(Long driverId);
 }

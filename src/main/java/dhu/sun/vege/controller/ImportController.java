@@ -51,4 +51,29 @@ public class ImportController {
         return importService.getImpoBybuyerId(buyerId);
     }
 
+    /**
+     * 根据司机id获取进货单列表
+     */
+    @GetMapping("/getdriverimpos")
+    @ApiOperation("根据司机id获取进货单")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public List<ImpolistView> getImpoBydriverId(@RequestParam Long driverId){
+        return importService.getImpoBydriverId(driverId);
+    }
+
+    @GetMapping("/getcurrentimpo")
+    @ApiOperation("根据司机id获取该司机当前进货单")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public ImpolistView getCurrentImpoBydrivId(@RequestParam Long driverId){
+        return importService.getCurrentImpoByDrivId(driverId);
+    }
+
+
+    @GetMapping("/changeimpostate")
+    @ApiOperation("司机确认配送后修改进货单的状态为配送中")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public Import changeImpoStateBydriver(@RequestParam Long importId){
+        return importService.changeImpoStateBydriver(importId);
+    }
+
 }

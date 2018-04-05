@@ -11,6 +11,7 @@ import dhu.sun.vege.service.ImportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.plaf.PanelUI;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -94,6 +95,64 @@ public class ImportServiceImpl implements ImportService {
             return impolistViews;
         }catch (Exception e)
         {
+            return null;
+        }
+    }
+
+    @Override
+    public List<ImpolistView> getImpoBydriverId(Long driverId){
+        try{
+            StoreHouse storeHouse;
+            List<Import> imports=importMapper.getImpoBydriverId(driverId);
+            List<ImpolistView> impolistViews=new ArrayList<>();
+            for(int i=0;i<imports.size();i++){
+                ImpolistView impolistView=new ImpolistView();
+                impolistView.setImpo(imports.get(i));
+                storeHouse =storeHouseMapper.selectByPrimaryKey(imports.get(i).getStoreId());
+                impolistView.setStorename(storeHouse.getName());
+                impolistView.setBuyername(userMapper.selectByPrimaryKey(imports.get(i).getBuyerId()).getName());
+                impolistView.setDrivname(userMapper.selectByPrimaryKey(imports.get(i).getDriverId()).getName());
+                impolistView.setSuppname(userMapper.selectByPrimaryKey(imports.get(i).getSupplierId()).getName());
+
+                impolistViews.add(impolistView);
+            }
+            return impolistViews;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public ImpolistView getCurrentImpoByDrivId(Long driverId){
+        try{
+            StoreHouse storeHouse;
+            List<Import> imports=importMapper.getCurrentByDrivId(driverId);
+                ImpolistView impolistView=new ImpolistView();
+                impolistView.setImpo(imports.get(0));
+                impolistView.setSupplier(userMapper.selectByPrimaryKey(imports.get(0).getSupplierId()));
+                storeHouse =storeHouseMapper.selectByPrimaryKey(imports.get(0).getStoreId());
+                impolistView.setStoreHouse(storeHouse);
+                impolistView.setStorename(storeHouse.getName());
+                impolistView.setBuyername(userMapper.selectByPrimaryKey(imports.get(0).getBuyerId()).getName());
+                impolistView.setDrivname(userMapper.selectByPrimaryKey(imports.get(0).getDriverId()).getName());
+                impolistView.setSuppname(userMapper.selectByPrimaryKey(imports.get(0).getSupplierId()).getName());
+
+            return impolistView;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public Import changeImpoStateBydriver(Long importId){
+        try{
+            Import impo;
+            impo=importMapper.selectByPrimaryKey(importId);
+            impo.setState("配送中");
+            impo.setLastUpdateDate(new Date());
+            importMapper.updateByPrimaryKey(impo);
+            return importMapper.selectByPrimaryKey(importId);
+        }catch (Exception e){
             return null;
         }
     }

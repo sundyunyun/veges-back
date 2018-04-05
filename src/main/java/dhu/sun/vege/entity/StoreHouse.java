@@ -18,6 +18,9 @@ public class StoreHouse extends BaseEntity{
     @Column(name="name")
     private String name;
 
+    @Column(name="tel")
+    private String tel;
+
     @Column(name="address")
     private String address;
 
@@ -35,6 +38,14 @@ public class StoreHouse extends BaseEntity{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public String getAddress() {

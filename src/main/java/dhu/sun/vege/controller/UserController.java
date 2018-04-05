@@ -52,7 +52,7 @@ public class UserController {
      */
     @PutMapping("/user/change")
     @ApiOperation("修改自己的用户信息")
-    @PreAuthorize("hasAnyAuthority('all')")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
     public User updateUserOneself(@RequestBody User user) {
         return userService.updateUserOneself(user);
     }

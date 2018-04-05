@@ -22,4 +22,9 @@ public interface ImportService {
      * 根据采购员获取进货单列表
      */
     List<ImpolistView> getImpoBybuyerId(Long buyerId);
+
+    List<ImpolistView> getImpoBydriverId(Long driverId);
+
+    ImpolistView getCurrentImpoByDrivId(Long driverId);
+    Import changeImpoStateBydriver(Long importId);
 }
