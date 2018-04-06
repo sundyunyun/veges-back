@@ -76,4 +76,11 @@ public class ImportController {
         return importService.changeImpoStateBydriver(importId);
     }
 
+    @GetMapping("/getByimportId")
+    @ApiOperation("根据进货单id获取import")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public Import getByimportId(@RequestParam Long importId){
+        return importService.getByimportId(importId);
+    }
+
 }

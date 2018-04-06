@@ -5,10 +5,7 @@ import dhu.sun.vege.service.InstoreItemService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,12 @@ public class InstoreItemController {
     /*@PreAuthorize("hasAnyAuthority('all')")*/
     public List<InstoreItem> getAllByinstoreId(@RequestParam Long instoreId){
         return instoreItemService.getAllByinstoreId(instoreId);
+    }
+
+    @PostMapping("/addinstoreitem")
+    @ApiOperation("添加一条入库详情")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public InstoreItem instoreItem(@RequestBody InstoreItem instoreItem){
+        return instoreItemService.addInstoreItem(instoreItem);
     }
 }

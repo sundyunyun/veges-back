@@ -1,6 +1,7 @@
 package dhu.sun.vege.service;
 
 import dhu.sun.vege.entity.InstoreItem;
+import io.swagger.models.auth.In;
 
 import java.util.List;
 
@@ -9,4 +10,5 @@ import java.util.List;
  */
 public interface InstoreItemService {
     List<InstoreItem> getAllByinstoreId(Long instoreId);
+    InstoreItem addInstoreItem(InstoreItem instoreItem);
 }

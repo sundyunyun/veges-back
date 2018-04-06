@@ -1,14 +1,12 @@
 package dhu.sun.vege.controller;
 
+import dhu.sun.vege.entity.Instore;
 import dhu.sun.vege.model.view.InstorelistView;
 import dhu.sun.vege.service.InstoreService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,4 +33,10 @@ public class InstoreController {
         return instoreService.getAllinstoreBystoreId(storeId);
     }
 
+    @PostMapping("/addinstore")
+    @ApiOperation("添加一条入库单")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public Instore addInstore(@RequestBody Instore instore){
+        return instoreService.addInstore(instore);
+    }
 }

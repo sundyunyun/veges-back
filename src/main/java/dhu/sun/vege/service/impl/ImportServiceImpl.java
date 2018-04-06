@@ -156,4 +156,13 @@ public class ImportServiceImpl implements ImportService {
             return null;
         }
     }
+
+    @Override
+    public Import getByimportId(Long importId){
+        try{
+            return importMapper.selectByPrimaryKey(importId);
+        }catch (Exception e){
+            return null;
+        }
+    }
 }

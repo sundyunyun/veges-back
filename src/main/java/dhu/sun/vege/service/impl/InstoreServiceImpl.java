@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -76,6 +77,27 @@ public class InstoreServiceImpl implements InstoreService {
                 instorelistViews.add(instorelistView);
             }
             return instorelistViews;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public Instore addInstore(Instore instore){
+        try{
+            if(instore.getDriverId()!=null&&instore.getImportId()!=null&&instore.getKeeperId()!=null&&instore.getStoreId()!=null&&instore.getTotalprice()!=null&&instore.getTotalweight()!=null)
+            {
+                if(userMapper.selectByPrimaryKey(instore.getKeeperId())!=null&&userMapper.selectByPrimaryKey(instore.getDriverId())!=null&&storeHouseMapper.selectByPrimaryKey(instore.getStoreId())!=null&&importMapper.selectByPrimaryKey(instore.getImportId())!=null){
+                    instore.setCreationDate(new Date());
+                    instoreMapper.insertUseGeneratedKeys(instore);
+                    return instoreMapper.selectByPrimaryKey(instore.getId());
+            }
+            else {
+                    return null;
+                }
+            }
+            else  return null;
+
         }catch (Exception e){
             return null;
         }

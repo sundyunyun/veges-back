@@ -1,5 +1,6 @@
 package dhu.sun.vege.service;
 
+import dhu.sun.vege.entity.Instore;
 import dhu.sun.vege.model.view.InstorelistView;
 
 import java.util.List;
@@ -10,4 +11,5 @@ import java.util.List;
 public interface InstoreService {
     List<InstorelistView> getAllInstorelist();
     List<InstorelistView> getAllinstoreBystoreId(Long storeId);
+    Instore addInstore(Instore instore);
 }

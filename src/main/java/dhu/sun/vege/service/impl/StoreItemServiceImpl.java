@@ -6,6 +6,7 @@ import dhu.sun.vege.service.StoreItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,6 +41,7 @@ public class StoreItemServiceImpl implements StoreItemService {
         try{
             StoreItem storeItem=storeItemMapper.selectByPrimaryKey(storeitemId);
             storeItem.setNumber(number);
+            storeItem.setLastUpdateDate(new Date());
             storeItemMapper.updateByPrimaryKey(storeItem);
             return storeItemMapper.selectByPrimaryKey(storeitemId);
         }catch (Exception e){
