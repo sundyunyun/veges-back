@@ -17,7 +17,9 @@
         <result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
     </resultMap>
 
-
+    <select id="getAllByinstoreId" resultMap="BaseMap">
+        SELECT * FROM instoreitem WHERE instore_id=#{instoreId}
+    </select>
     <!--<select id="selectByAuthor" resultMap="BaseMap">
         SELECT
         *

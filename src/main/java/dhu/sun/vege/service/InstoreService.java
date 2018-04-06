@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface InstoreService {
     List<InstorelistView> getAllInstorelist();
+    List<InstorelistView> getAllinstoreBystoreId(Long storeId);
 }

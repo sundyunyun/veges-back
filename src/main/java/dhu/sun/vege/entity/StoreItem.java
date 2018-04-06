@@ -26,7 +26,7 @@ public class StoreItem extends BaseEntity{
     private String name;
 
     @Column(name="number")
-    private int number;
+    private Double number;
 
     public Long getId() {
         return id;
@@ -60,11 +60,11 @@ public class StoreItem extends BaseEntity{
         this.name = name;
     }
 
-    public int getNumber() {
+    public Double getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Double number) {
         this.number = number;
     }
 }

@@ -56,6 +56,28 @@ public class InstoreServiceImpl implements InstoreService {
         }
     }
 
+    @Override
+    public List<InstorelistView> getAllinstoreBystoreId(Long storeId){
+        try{
+            List<Instore> instores=instoreMapper.selectAll();
+            List<InstorelistView> instorelistViews=new ArrayList<>();
+            Import impo;
 
-
+            for(int i=0;i<instores.size();i++){
+                InstorelistView instorelistView=new InstorelistView();
+                impo=importMapper.selectByPrimaryKey(instores.get(i).getImportId());
+                instorelistView.setImpo(importMapper.selectByPrimaryKey(instores.get(i).getImportId()));
+                instorelistView.setDriver(userMapper.selectByPrimaryKey(instores.get(i).getDriverId()));
+                instorelistView.setInstore(instores.get(i));
+                instorelistView.setKeeper(userMapper.selectByPrimaryKey(instores.get(i).getKeeperId()));
+                instorelistView.setStoreHouse(storeHouseMapper.selectByPrimaryKey(instores.get(i).getStoreId()));
+                instorelistView.setSupplier(userMapper.selectByPrimaryKey(impo.getSupplierId()));
+                instorelistView.setBuyer(userMapper.selectByPrimaryKey(impo.getBuyerId()));
+                instorelistViews.add(instorelistView);
+            }
+            return instorelistViews;
+        }catch (Exception e){
+            return null;
+        }
+    }
 }
