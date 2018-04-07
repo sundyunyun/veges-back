@@ -31,12 +31,12 @@ public class UserController {
      * <p>
      * 数据校验资料 https://www.cnblogs.com/whgk/p/7191152.html
      */
-   /* @PostMapping("/user")
+    @PostMapping("/adduser")
     @ApiOperation("创建用户")
-    public User addUser(@RequestBody @Validated User user) {
+   /* @PreAuthorize("hasAnyAuthority('all')")*/
+    public User addUser(@RequestBody  User user) {
         return userService.addUser(user);
     }
-*/
     /**
      * 修改任何用户信息
      */
@@ -90,8 +90,15 @@ public class UserController {
     }
 
     /**
-     * 根据id获取用户本身信息
+     * 根据id修改客户状态
      */
+    @GetMapping("/addtoblack")
+    @ApiOperation("根据客户id修改其状态加为黑名单")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public User addToBlack(@RequestParam Long id)
+    {
+        return userService.addToBlack(id);
+    }
 
 
 

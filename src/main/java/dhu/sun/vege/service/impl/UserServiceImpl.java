@@ -1,7 +1,9 @@
 package dhu.sun.vege.service.impl;
 
 
+import dhu.sun.vege.entity.Department;
 import dhu.sun.vege.entity.User;
+import dhu.sun.vege.mapper.DepartmentMapper;
 import dhu.sun.vege.mapper.UserMapper;
 import dhu.sun.vege.model.core.JwtUserDetails;
 import dhu.sun.vege.model.view.LoginView;
@@ -42,6 +44,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private DepartmentMapper departmentMapper;
 
    /* @Autowired
     private LogService logService;*/
@@ -57,9 +61,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Long id) { return userMapper.selectByPrimaryKey(id); }
 
-/*    @Override
+    @Override
     public User addUser(User user) {
         try {
+            Department department;
             String username = user.getUsername();
             //用户名不允许重复
             if (userMapper.selectUserByUsername(username) != null) {
@@ -70,15 +75,19 @@ public class UserServiceImpl implements UserService {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setPassword(encoder.encode(user.getPassword()));
             //设置创建时间
-           user.setCreationDate();
+           user.setCreationDate(new Date());
             userMapper.insertUseGeneratedKeys(user);
             //返回创建成功的用户
+            // 部门人数要加一客户角色、部门设定
+            department=departmentMapper.selectByPrimaryKey(user.getDeptId());
+            department.setNumber(department.getNumber()+1);
+            departmentMapper.updateByPrimaryKey(department);
 
             return userMapper.selectByPrimaryKey(user.getId());
         } catch (Exception e) {
             return null;
         }
-    }*/
+    }
 
     @Override
     public User updateUser(User user) {
@@ -133,6 +142,28 @@ public class UserServiceImpl implements UserService {
     {
         try{
             return userMapper.getAllUserByRoleId(roleId);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public User addToBlack(Long id)
+    {
+        try{
+            User u=userMapper.selectByPrimaryKey(id);
+            if(u.getRoleId()==1){
+                u.setState("黑名单");
+                u.setLastUpdateDate(new Date());
+                userMapper.updateByPrimaryKey(u);
+            }
+            else if(u.getRoleId()==2){
+                u.setState("未合作");
+                u.setLastUpdateDate(new Date());
+                userMapper.updateByPrimaryKey(u);
+            }
+
+            return userMapper.selectByPrimaryKey(id);
         }catch (Exception e){
             return null;
         }

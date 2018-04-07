@@ -65,6 +65,11 @@ public class ImportServiceImpl implements ImportService {
            impo=importMapper.selectByPrimaryKey(importId);
            impo.setState("进货已完成");
            importMapper.updateByPrimaryKey(impo);
+
+           User u=userMapper.selectByPrimaryKey(impo.getDriverId());
+           u.setState("配送中");
+           userMapper.updateByPrimaryKey(u);
+
             return importMapper.selectByPrimaryKey(impo.getId());
         }catch (Exception e){
             return null;

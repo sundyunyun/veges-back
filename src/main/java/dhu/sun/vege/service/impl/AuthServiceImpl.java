@@ -18,6 +18,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class AuthServiceImpl implements AuthService {
 
@@ -64,7 +66,7 @@ public class AuthServiceImpl implements AuthService {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setPassword(encoder.encode(user.getPassword()));
             //设置创建时间
-           // user.setCreationDate();
+           user.setCreationDate(new Date());
             user.setRoleId(new Long(1));
             user.setDeptId(new Long(1));
            /* user.setIsEnabled(0001);*/
@@ -110,6 +112,7 @@ public class AuthServiceImpl implements AuthService {
         view.setUser(userDetails.getUser());
         view.setRole(userDetails.getRole());
         view.setAuths(userDetails.getAuths());
+
 
         return view;
     }

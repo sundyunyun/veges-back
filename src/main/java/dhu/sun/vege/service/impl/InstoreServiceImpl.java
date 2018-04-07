@@ -1,13 +1,10 @@
 package dhu.sun.vege.service.impl;
 
-import dhu.sun.vege.entity.Import;
-import dhu.sun.vege.entity.Instore;
-import dhu.sun.vege.mapper.ImportMapper;
-import dhu.sun.vege.mapper.InstoreMapper;
-import dhu.sun.vege.mapper.StoreHouseMapper;
-import dhu.sun.vege.mapper.UserMapper;
+import dhu.sun.vege.entity.*;
+import dhu.sun.vege.mapper.*;
 import dhu.sun.vege.model.view.InstorelistView;
 import dhu.sun.vege.service.InstoreService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +28,14 @@ public class InstoreServiceImpl implements InstoreService {
 
     @Autowired
     private ImportMapper importMapper;
+
+    @Autowired
+    private InstoreItemMapper instoreItemMapper;
+
+    @Autowired
+    private StoreItemMapper storeItemMapper;
+
+
 
     @Override
     public List<InstorelistView> getAllInstorelist(){
@@ -98,6 +103,61 @@ public class InstoreServiceImpl implements InstoreService {
             }
             else  return null;
 
+        }catch (Exception e){
+            return null;
+        }
+    }
+    //将instoreitem加到仓库里面，修改仓库数量
+    @Override
+    public Instore addInstoreDone(Long instoreId)
+    {
+        try{
+            Instore instore=instoreMapper.selectByPrimaryKey(instoreId);
+            instore.setLastUpdateDate(new Date());
+            instore.setState("入库完成");
+            instoreMapper.updateByPrimaryKey(instore);
+            Import impo=importMapper.selectByPrimaryKey(instore.getImportId());
+            impo.setLastUpdateDate(new Date());
+            impo.setState("配送完成，已入库");
+            impo.setKeeperId(instore.getKeeperId());
+            importMapper.updateByPrimaryKey(impo);
+            boolean bool=true;
+            int i,j;
+
+            //修改仓库数量
+            List<InstoreItem> instoreItems=instoreItemMapper.getAllByinstoreId(instoreId);
+            List<StoreItem> storeItems=storeItemMapper.getStoreItemBystoreId(instore.getStoreId());
+
+            for(i=0;i<instoreItems.size();i++)
+            {
+                int count=0;
+                for(j=0;j<storeItems.size();j++)
+                {
+                    if(instoreItems.get(i).getName().equals(storeItems.get(j).getName())){
+                        bool=true;
+                        storeItems.get(j).setNumber(storeItems.get(j).getNumber()+instoreItems.get(i).getNumber());
+                        storeItems.get(j).setLastUpdateDate(new Date());
+                        storeItemMapper.updateByPrimaryKey(storeItems.get(j));
+                    }
+                    else {
+                        count++;
+                    }
+                }
+                if(count==storeItems.size())
+                {
+                    InstoreItem instoreItem=instoreItemMapper.selectByPrimaryKey(instoreItems.get(i).getId());
+                    StoreItem storeItem=new StoreItem();
+                    storeItem.setStoreId(instore.getStoreId());
+                    storeItem.setVegesId(instoreItem.getVegesId());
+                    storeItem.setName(instoreItem.getName());
+                    storeItem.setNumber(instoreItem.getNumber());
+                    storeItem.setCreationDate(new Date());
+
+                    storeItemMapper.insertUseGeneratedKeys(storeItem);
+                }
+            }
+
+            return instoreMapper.selectByPrimaryKey(instoreId);
         }catch (Exception e){
             return null;
         }

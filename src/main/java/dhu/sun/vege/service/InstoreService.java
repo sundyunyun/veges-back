@@ -12,4 +12,5 @@ public interface InstoreService {
     List<InstorelistView> getAllInstorelist();
     List<InstorelistView> getAllinstoreBystoreId(Long storeId);
     Instore addInstore(Instore instore);
+    Instore addInstoreDone(Long instoreId);
 }

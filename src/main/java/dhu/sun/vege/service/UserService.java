@@ -40,7 +40,7 @@ public interface UserService {
     /**
      * 添加用户
      */
-  //  User addUser(User user);
+   User addUser(User user);
 
     /**
      * 修改用户信息,用户名和ID不允许修改
@@ -56,5 +56,7 @@ public interface UserService {
      * 根据角色ID获取用户信息
      */
     List<User> getAllUserByRoleId(Long roleId);
+
+    User addToBlack(Long id);
 
 }

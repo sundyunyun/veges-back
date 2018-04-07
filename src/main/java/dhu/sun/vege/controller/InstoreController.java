@@ -39,4 +39,11 @@ public class InstoreController {
     public Instore addInstore(@RequestBody Instore instore){
         return instoreService.addInstore(instore);
     }
+
+    @GetMapping("/addinstoredone")
+    @ApiOperation("添加入库单成功，修改入库单状态为入库完成")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public Instore addInstoreDone(@RequestParam Long instoreId){
+        return instoreService.addInstoreDone(instoreId);
+    }
 }
