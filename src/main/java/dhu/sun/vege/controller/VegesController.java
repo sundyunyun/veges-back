@@ -42,4 +42,38 @@ public class VegesController {
     public Veges addVeges(@RequestBody Veges veges){
         return vegesService.addVeges(veges);
     }
+
+
+    @GetMapping("/getvegesById")
+    @ApiOperation("根据菜品Id获取蔬菜信息")
+   /* @PreAuthorize("hasAnyAuthority('all')")*/
+    public Veges getVegesById(@RequestParam Long vegesId){
+        return vegesService.getVegesById(vegesId);
+    }
+
+
+    @PutMapping("/changeveges")
+    @ApiOperation("修改菜品信息")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public Veges changeVeges(@RequestBody Veges veges)
+    {
+        return vegesService.changeVeges(veges);
+    }
+
+
+    @GetMapping("/changeon")
+    @ApiOperation("改菜品状态为上架，卖了")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public Veges changeStateOn(@RequestParam Long vegesId)
+    {
+        return vegesService.changeStateOn(vegesId);
+    }
+
+    @GetMapping("/changeoff")
+    @ApiOperation("改菜品状态为下架，不卖了")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public Veges changeStateOff(@RequestParam Long vegesId)
+    {
+        return vegesService.changeStateOff(vegesId);
+    }
 }

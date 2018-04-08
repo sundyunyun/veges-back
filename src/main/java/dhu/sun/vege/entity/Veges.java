@@ -27,6 +27,9 @@ public class Veges extends BaseEntity {
     @Column(name="des")
     private String des;
 
+    @Column(name="state")
+    private String state;
+
     public Long getId() {
         return id;
     }
@@ -65,5 +68,13 @@ public class Veges extends BaseEntity {
 
     public void setDes(String des) {
         this.des = des;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

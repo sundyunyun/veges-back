@@ -56,4 +56,57 @@ public class VegesServiceImpl implements VegesService {
             return null;
         }
     }
+
+    @Override
+    public Veges getVegesById(Long vegesId){
+        try{
+            return vegesMapper.selectByPrimaryKey(vegesId);
+        }catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    @Override
+    public Veges changeVeges(Veges veges){
+        try{
+
+            veges.setLastUpdateDate(new Date());
+            vegesMapper.updateByPrimaryKey(veges);
+            return vegesMapper.selectByPrimaryKey(veges.getId());
+        }catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    @Override
+    public Veges changeStateOn(Long vegesId)
+    {
+        try{
+            Veges veges=vegesMapper.selectByPrimaryKey(vegesId);
+            veges.setLastUpdateDate(new Date());
+            veges.setState("上架");
+            vegesMapper.updateByPrimaryKey(veges);
+            return vegesMapper.selectByPrimaryKey(vegesId);
+        }catch (Exception e)
+        {
+            return  null;
+        }
+    }
+
+    @Override
+    public Veges changeStateOff(Long vegesId)
+    {
+        try {
+            Veges veges=vegesMapper.selectByPrimaryKey(vegesId);
+            veges.setLastUpdateDate(new Date());
+            veges.setState("下架");
+            vegesMapper.updateByPrimaryKey(veges);
+            return vegesMapper.selectByPrimaryKey(vegesId);
+        }catch (Exception e)
+        {
+            return null;
+        }
+    }
 }

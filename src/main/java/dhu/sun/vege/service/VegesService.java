@@ -19,5 +19,13 @@ public interface VegesService {
 
     Veges addVeges(Veges veges);
 
+    Veges getVegesById(Long vegesId);
+
+    Veges changeVeges(Veges veges);
+
+    Veges changeStateOn(Long vegesId);
+
+    Veges changeStateOff(Long vegesId);
+
 
 }
