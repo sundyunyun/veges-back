@@ -8,6 +8,7 @@ import dhu.sun.vege.service.VegesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,5 +43,17 @@ public class VegesServiceImpl implements VegesService {
     @Override
     public List<Veges> getAllVeges(){
         return vegesMapper.selectAll();
+    }
+
+    @Override
+    public Veges addVeges(Veges veges){
+        try{
+            veges.setCreationDate(new Date());
+            vegesMapper.insertUseGeneratedKeys(veges);
+            return vegesMapper.selectByPrimaryKey(veges.getId());
+        }catch (Exception e)
+        {
+            return null;
+        }
     }
 }

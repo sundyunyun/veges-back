@@ -83,4 +83,12 @@ public class ImportController {
         return importService.getByimportId(importId);
     }
 
+
+    @GetMapping("/getallimpo")
+    @ApiOperation("获取所有的进货单")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public List<ImpolistView> getAllimport()
+    {
+        return importService.getAllimport();
+    }
 }

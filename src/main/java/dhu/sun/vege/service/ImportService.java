@@ -28,4 +28,5 @@ public interface ImportService {
     ImpolistView getCurrentImpoByDrivId(Long driverId);
     Import changeImpoStateBydriver(Long importId);
     Import getByimportId(Long importId);
+    List<ImpolistView> getAllimport();
 }

@@ -105,6 +105,35 @@ public class ImportServiceImpl implements ImportService {
     }
 
     @Override
+    public List<ImpolistView> getAllimport()
+    {
+        try{
+            StoreHouse storeHouse;
+            List<ImpolistView> impolistViews =new ArrayList<>();
+            List<Import> impolist=importMapper.selectAll();
+          /*  int i=impolist.size();*/
+
+            for(int i=0;i<impolist.size();i++) {
+                ImpolistView impolistView = new ImpolistView();
+                impolistView.setImpo(impolist.get(i));
+                storeHouse = storeHouseMapper.selectByPrimaryKey(impolist.get(i).getStoreId());
+                impolistView.setStorename(storeHouse.getName());
+                impolistView.setBuyername(userMapper.selectByPrimaryKey(impolist.get(i).getBuyerId()).getName());
+                impolistView.setDrivname(userMapper.selectByPrimaryKey(impolist.get(i).getDriverId()).getName());
+                impolistView.setSuppname(userMapper.selectByPrimaryKey(impolist.get(i).getSupplierId()).getName());
+                impolistView.setKeeper(userMapper.selectByPrimaryKey(impolist.get(i).getKeeperId()));
+
+                impolistViews.add(impolistView);
+            }
+            return impolistViews;
+
+            }catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    @Override
     public List<ImpolistView> getImpoBydriverId(Long driverId){
         try{
             StoreHouse storeHouse;
@@ -152,10 +181,15 @@ public class ImportServiceImpl implements ImportService {
     public Import changeImpoStateBydriver(Long importId){
         try{
             Import impo;
+            User buyer;
             impo=importMapper.selectByPrimaryKey(importId);
+            buyer=userMapper.selectByPrimaryKey(impo.getBuyerId());
+            buyer.setState("空闲");
+            userMapper.updateByPrimaryKey(buyer);
             impo.setState("配送中");
             impo.setLastUpdateDate(new Date());
             importMapper.updateByPrimaryKey(impo);
+
             return importMapper.selectByPrimaryKey(importId);
         }catch (Exception e){
             return null;

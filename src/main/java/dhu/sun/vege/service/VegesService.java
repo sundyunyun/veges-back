@@ -17,5 +17,7 @@ public interface VegesService {
      */
     List<Veges> getAllVeges();
 
+    Veges addVeges(Veges veges);
+
 
 }

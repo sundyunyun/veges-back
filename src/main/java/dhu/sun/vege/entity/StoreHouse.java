@@ -24,6 +24,9 @@ public class StoreHouse extends BaseEntity{
     @Column(name="address")
     private String address;
 
+    @Column(name="state")
+    private String state;
+
     public Long getId() {
         return id;
     }
@@ -54,5 +57,13 @@ public class StoreHouse extends BaseEntity{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

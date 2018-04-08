@@ -16,6 +16,7 @@ public class ImpolistView {
    private Import impo;
    private User supplier;
    private StoreHouse storeHouse;
+   private User Keeper;
    private String suppname;
    private String drivname;
    private String storename;
@@ -75,5 +76,13 @@ public class ImpolistView {
 
     public void setBuyername(String buyername) {
         this.buyername = buyername;
+    }
+
+    public User getKeeper() {
+        return Keeper;
+    }
+
+    public void setKeeper(User keeper) {
+        Keeper = keeper;
     }
 }

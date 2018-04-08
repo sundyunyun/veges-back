@@ -154,11 +154,19 @@ public class UserServiceImpl implements UserService {
             User u=userMapper.selectByPrimaryKey(id);
             if(u.getRoleId()==1){
                 u.setState("黑名单");
+                u.setPassword("out");
                 u.setLastUpdateDate(new Date());
                 userMapper.updateByPrimaryKey(u);
             }
             else if(u.getRoleId()==2){
                 u.setState("未合作");
+                u.setLastUpdateDate(new Date());
+                userMapper.updateByPrimaryKey(u);
+            }
+            else
+            {
+                u.setState("离职");
+                u.setPassword("out");
                 u.setLastUpdateDate(new Date());
                 userMapper.updateByPrimaryKey(u);
             }
