@@ -81,7 +81,7 @@
 		<!--使用jetty-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jetty</artifactId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
 		<!--文件上传-->
 		<dependency>

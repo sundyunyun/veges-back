@@ -29,10 +29,10 @@ public class Outstore extends BaseEntity {
     private Long keeperId;
 
     @Column(name = "totalprice")
-    private BigDecimal totalprice;
+    private Double totalprice;
 
     @Column(name = "totalweight")
-    private int totalweight;
+    private Double totalweight;
 
     @Column(name = "state")
     private String state;
@@ -77,19 +77,19 @@ public class Outstore extends BaseEntity {
         this.keeperId = keeperId;
     }
 
-    public BigDecimal getTotalprice() {
+    public Double getTotalprice() {
         return totalprice;
     }
 
-    public void setTotalprice(BigDecimal totalprice) {
+    public void setTotalprice(Double totalprice) {
         this.totalprice = totalprice;
     }
 
-    public int getTotalweight() {
+    public Double getTotalweight() {
         return totalweight;
     }
 
-    public void setTotalweight(int totalweight) {
+    public void setTotalweight(Double totalweight) {
         this.totalweight = totalweight;
     }
 

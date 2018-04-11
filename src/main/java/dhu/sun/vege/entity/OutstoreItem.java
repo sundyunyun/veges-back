@@ -26,13 +26,13 @@ public class OutstoreItem extends BaseEntity {
     private String name;
 
     @Column(name = "price")
-    private BigDecimal price;
+    private Double price;
 
     @Column(name = "total")
-    private BigDecimal total;
+    private Double total;
 
     @Column(name = "number")
-    private int number;
+    private Double number;
 
     public Long getId() {
         return id;
@@ -66,27 +66,27 @@ public class OutstoreItem extends BaseEntity {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public BigDecimal getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(BigDecimal total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
-    public int getNumber() {
+    public Double getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Double number) {
         this.number = number;
     }
 }

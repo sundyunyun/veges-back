@@ -6,7 +6,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -75,5 +77,22 @@ public class VegesController {
     public Veges changeStateOff(@RequestParam Long vegesId)
     {
         return vegesService.changeStateOff(vegesId);
+    }
+
+    @PostMapping("/file")
+    public String uploadFile(@RequestParam MultipartFile upload) {
+        String fileName = "1.jpg";
+        String path = "D:/temp/";
+        File file = new File(path + fileName);
+        File parent = file.getParentFile();
+        if (!parent.exists()) {
+            parent.mkdirs();
+        }
+        try {
+            upload.transferTo(file.getAbsoluteFile());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "success";
     }
 }

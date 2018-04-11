@@ -17,6 +17,9 @@
         <result property="lastUpdatedBy" column="LAST_UPDATED_BY"/>
         <result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
     </resultMap>
+    <select id="getItemByorderId" resultMap="BaseMap">
+        SELECT * FROM orderitem WHERE order_id=#{orderId}
+    </select>
 
 
     <!--<select id="selectByAuthor" resultMap="BaseMap">

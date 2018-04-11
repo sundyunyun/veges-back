@@ -17,10 +17,9 @@
         <result property="lastUpdatedBy" column="LAST_UPDATED_BY"/>
         <result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
     </resultMap>
-    <select id="selectUserByUsername" resultMap="BaseMap">
-        SELECT * FROM sys_user WHERE username=#{username}
+    <select id="getAllByStoreId" resultMap="BaseMap">
+        SELECT * FROM outstore WHERE store_id=#{storeId}
     </select>
-
     <!--<select id="selectByAuthor" resultMap="BaseMap">
         SELECT
         *
