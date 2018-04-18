@@ -44,5 +44,11 @@ public class OutstoreController {
         return outstoreService.addOutstore(addoutstore);
     }
 
-    @GetMapping("/")
+    @GetMapping("/addoutstoredone")
+    @ApiOperation("添加出库单完成，修改出库单状态以及订单状态，修改仓库菜品数量")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public Outstore addOutstoreDone(@RequestParam Long outstoreId)
+    {
+        return outstoreService.addOutstoreDone(outstoreId);
+    }
 }

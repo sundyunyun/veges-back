@@ -18,7 +18,12 @@
         <result property="lastUpdatedBy" column="LAST_UPDATED_BY"/>
         <result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
     </resultMap>
-
+    <select id="getOrdersBydriverId" resultMap="BaseMap">
+        SELECT * FROM ord WHERE driver_id=#{driverId}
+    </select>
+    <select id="getCurrentOrdersBydriver" resultMap="BaseMap">
+        SELECT * FROM ord WHERE driver_id=#{driverId} AND state="待配送"
+    </select>
     <!--<select id="selectByAuthor" resultMap="BaseMap">
         SELECT
         *

@@ -12,5 +12,5 @@ public interface OutstoreService {
     List<OutstorelistView> getAllOutstore();
     List<OutstorelistView> getAllBystoreId(Long storeId);
     Outstore addOutstore(Outstore outstore);
-    Outstore addOustoreDone(Long outstoreId);
+    Outstore addOutstoreDone(Long outstoreId);
 }

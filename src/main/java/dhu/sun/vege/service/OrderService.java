@@ -11,5 +11,8 @@ import java.util.List;
  */
 public interface OrderService {
     List<OrderlistView> getAll();
-    Order getOrderById(Long orderId);
+    OrderlistView getOrderById(Long orderId);
+    List<OrderlistView> getOrdersBydriverId(Long driverId);
+    Order confirmOrderBydriver(Long orderId);
+    List<OrderlistView> getCurrentOrdersBydriver(Long driverId);
 }

@@ -1,15 +1,10 @@
 package dhu.sun.vege.service.impl;
 
-import dhu.sun.vege.entity.Order;
-import dhu.sun.vege.entity.Outstore;
-import dhu.sun.vege.entity.StoreHouse;
-import dhu.sun.vege.entity.User;
-import dhu.sun.vege.mapper.OrderMapper;
-import dhu.sun.vege.mapper.OutStoreMapper;
-import dhu.sun.vege.mapper.StoreHouseMapper;
-import dhu.sun.vege.mapper.UserMapper;
+import dhu.sun.vege.entity.*;
+import dhu.sun.vege.mapper.*;
 import dhu.sun.vege.model.view.OutstorelistView;
 import dhu.sun.vege.service.OutstoreService;
+import org.springframework.aop.target.LazyInitTargetSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
@@ -34,6 +29,12 @@ public class OutstoreServiceImpl implements OutstoreService{
 
     @Autowired
     private OrderMapper orderMapper;
+
+    @Autowired
+    private OutstoreItemMapper outstoreItemMapper;
+
+    @Autowired
+    private StoreItemMapper storeItemMapper;
 
 
     @Override
@@ -106,7 +107,33 @@ public class OutstoreServiceImpl implements OutstoreService{
     public Outstore addOutstoreDone(Long outstoreId)
     {
         try{
+            Outstore outstore=outStoreMapper.selectByPrimaryKey(outstoreId);
+            outstore.setLastUpdateDate(new Date());
+            outstore.setState("入库完成");
+            outStoreMapper.updateByPrimaryKey(outstore);
 
+            Order order=orderMapper.selectByPrimaryKey(outstore.getOrderId());
+            order.setState("配送中");
+            order.setLastUpdateDate(new Date());
+            orderMapper.updateByPrimaryKey(order);
+
+            //修改仓库菜品数量
+            List<OutstoreItem> outstoreItems=outstoreItemMapper.getAllitemByoutstoreId(outstoreId);
+            List<StoreItem> storeItems=storeItemMapper.getStoreItemBystoreId(outstore.getStoreId());
+
+            for(int i=0;i<outstoreItems.size();i++)
+            {
+                for(int j=0;j<storeItems.size();j++)
+                {
+                    if(outstoreItems.get(i).getName().equals(storeItems.get(j).getName()))
+                    {
+                        storeItems.get(j).setNumber(storeItems.get(j).getNumber()-outstoreItems.get(i).getNumber());
+                        storeItems.get(j).setLastUpdateDate(new Date());
+                        storeItemMapper.updateByPrimaryKey(storeItems.get(j));
+                    }
+                }
+            }
+            return outstore;
         }catch (Exception e)
         {
             return null;
