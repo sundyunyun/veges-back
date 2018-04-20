@@ -15,4 +15,8 @@ public interface OrderService {
     List<OrderlistView> getOrdersBydriverId(Long driverId);
     Order confirmOrderBydriver(Long orderId);
     List<OrderlistView> getCurrentOrdersBydriver(Long driverId);
+    List<OrderlistView> getOrdersBycustId(Long custId);
+    Order confirmOrderBycustomer(Long orderId);
+    List<OrderlistView> getCurrentOrders();
+    Order arrangeDriverForOrder(Long orderId,Long driverId);
 }

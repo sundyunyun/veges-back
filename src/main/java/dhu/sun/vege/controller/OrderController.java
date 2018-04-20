@@ -5,6 +5,7 @@ import dhu.sun.vege.entity.Order;
 import dhu.sun.vege.entity.Outstore;
 import dhu.sun.vege.model.view.OrderlistView;
 import dhu.sun.vege.service.OrderService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -60,5 +61,37 @@ public class OrderController {
     public List<OrderlistView> getCurrrentOrdersBydriver(@RequestParam Long driverId)
     {
         return orderService.getCurrentOrdersBydriver(driverId);
+    }
+
+    @GetMapping("/getordersBycustomerId")
+    @ApiOperation("根据客户id查询历史订单")
+   /* @PreAuthorize("hasAnyAuthority('all')")*/
+    public List<OrderlistView> getOrdersBycustomerId(@RequestParam Long custId)
+    {
+        return orderService.getOrdersBycustId(custId);
+    }
+
+    @GetMapping("/orderdonebycust")
+    @ApiOperation("客户确认收货修改订单状态为客户确认收货")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public Order confirmOrderBycustomer(@RequestParam Long orderId)
+    {
+        return orderService.confirmOrderBycustomer(orderId);
+    }
+
+    @GetMapping("getcurrentorderBycust")
+    @ApiOperation("/采购员查看当前客户已下好的订单，根据订单状态“订单完成”显示，安排司机进行派送")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public List<OrderlistView> getCurrentOrders()
+    {
+        return orderService.getCurrentOrders();
+    }
+
+    @GetMapping("arrangedriver")
+    @ApiOperation("为订单安排司机并修改相关状态和订单内容")
+    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    public Order arrangeDriverForOrder(@RequestParam Long orderId,@RequestParam Long driverId)
+    {
+        return orderService.arrangeDriverForOrder(orderId,driverId);
     }
 }

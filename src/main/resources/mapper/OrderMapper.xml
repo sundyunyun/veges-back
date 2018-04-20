@@ -21,8 +21,17 @@
     <select id="getOrdersBydriverId" resultMap="BaseMap">
         SELECT * FROM ord WHERE driver_id=#{driverId}
     </select>
+
     <select id="getCurrentOrdersBydriver" resultMap="BaseMap">
         SELECT * FROM ord WHERE driver_id=#{driverId} AND state="待配送"
+    </select>
+
+    <select id="getOrdersBycustId" resultMap="BaseMap">
+        SELECT * FROM ord WHERE cust_id=#{custId}
+    </select>
+
+    <select id="getCurrentOrders" resultMap="BaseMap">
+        SELECT * FROM ord WHERE state="订单已完成"
     </select>
     <!--<select id="selectByAuthor" resultMap="BaseMap">
         SELECT
