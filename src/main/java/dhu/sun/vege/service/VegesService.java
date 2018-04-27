@@ -1,6 +1,7 @@
 package dhu.sun.vege.service;
 
 import dhu.sun.vege.entity.Veges;
+import dhu.sun.vege.model.view.Vegeslist;
 
 import java.util.List;
 
@@ -26,6 +27,12 @@ public interface VegesService {
     Veges changeStateOn(Long vegesId);
 
     Veges changeStateOff(Long vegesId);
+
+    List<Vegeslist> getOnVeges();
+
+    Veges addPicpath(String pth,Long vegesId);
+
+    Veges addVegesPath(Long vegesId,String pth);
 
 
 }

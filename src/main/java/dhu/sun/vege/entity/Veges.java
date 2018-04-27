@@ -30,6 +30,9 @@ public class Veges extends BaseEntity {
     @Column(name="state")
     private String state;
 
+    @Column(name="pth")
+    private String pth;
+
     public Long getId() {
         return id;
     }
@@ -76,5 +79,13 @@ public class Veges extends BaseEntity {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getPth() {
+        return pth;
+    }
+
+    public void setPth(String pth) {
+        this.pth = pth;
     }
 }

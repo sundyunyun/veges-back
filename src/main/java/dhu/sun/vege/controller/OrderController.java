@@ -94,4 +94,20 @@ public class OrderController {
     {
         return orderService.arrangeDriverForOrder(orderId,driverId);
     }
+
+    @PostMapping("/addorder")
+    @ApiOperation("添加生成一条订单order")
+  /*  @PreAuthorize("hasAnyAuthority('all')")*/
+    public Order addOrder(@RequestBody Order order)
+    {
+        return orderService.addOrder(order);
+    }
+
+    @GetMapping("/addorderdone")
+    @ApiOperation("订单生成成功，修改订单状态")
+  /*  @PreAuthorize("hasAnyAuthority('all')")*/
+    public Order addOrderDone(@RequestParam Long orderId,@RequestParam Double totalweight,@RequestParam Double totalprice)
+    {
+        return orderService.addOrderDone(orderId,totalweight,totalprice);
+    }
 }

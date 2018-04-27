@@ -1,6 +1,8 @@
 package dhu.sun.vege.controller;
 
+import dhu.sun.vege.constants.AppConst;
 import dhu.sun.vege.entity.Veges;
+import dhu.sun.vege.model.view.Vegeslist;
 import dhu.sun.vege.service.VegesService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by think on 2018/3/27.
@@ -79,11 +82,30 @@ public class VegesController {
         return vegesService.changeStateOff(vegesId);
     }
 
+    @GetMapping("/getonveges")
+    @ApiOperation("获取所有在售的上架蔬菜")
+/*    @PreAuthorize("hasAnyAuthority('all')")*/
+    public List<Vegeslist> getOnVeges()
+    {
+        return vegesService.getOnVeges();
+    }
+
     @PostMapping("/file")
     public String uploadFile(@RequestParam MultipartFile upload) {
-        String fileName = "1.jpg";
-        String path = "D:/temp/";
-        File file = new File(path + fileName);
+       // String fileName=upload.getOriginalFilename();
+//        String path = "C:/Users/think/Desktop/imgs/";
+
+        String originalFileName = upload.getOriginalFilename();
+        //新的文件名称
+        String newFileName;
+        //有后缀保存后缀,无后缀直接UUID
+        if (originalFileName.contains(".")) {
+            newFileName = UUID.randomUUID() + originalFileName.substring(originalFileName.lastIndexOf("."));
+        } else {
+            newFileName = UUID.randomUUID() + "";
+        }
+        File file = new File(AppConst.basePath + newFileName);
+
         File parent = file.getParentFile();
         if (!parent.exists()) {
             parent.mkdirs();
@@ -93,6 +115,15 @@ public class VegesController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "success";
+
+        return newFileName;
+    }
+
+    @GetMapping("/addvegespath")
+    @ApiOperation("为新添加的蔬菜根据蔬菜id添加图片路径")
+  /*  @PreAuthorize("hasAnyAuthority('all')")*/
+    public Veges addVegesPath(@RequestParam Long vegesId,@RequestParam String pth)
+    {
+        return vegesService.addVegesPath(vegesId,pth);
     }
 }

@@ -1,5 +1,6 @@
 package dhu.sun.vege.service;
 
+import dhu.sun.vege.entity.Order;
 import dhu.sun.vege.entity.OrderItem;
 
 import java.util.List;
@@ -9,4 +10,5 @@ import java.util.List;
  */
 public interface OrderItemService {
     List<OrderItem> getItemByorderId(Long orderId);
+    OrderItem addOrderItem(OrderItem orderItem);
 }

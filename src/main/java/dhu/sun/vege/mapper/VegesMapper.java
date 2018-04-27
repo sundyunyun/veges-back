@@ -12,4 +12,6 @@ public interface VegesMapper extends BaseMapper<Veges> {
     List<Veges> getVegesListBySupplierId(Long supplierId);
 
     Veges selectVegesByName(String name);
+
+    List<Veges> getOnVeges();
 }

@@ -5,10 +5,7 @@ import dhu.sun.vege.service.OrderItemService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,13 @@ public class OrderItemController {
     public List<OrderItem> getItemByorderId(@RequestParam Long orderId)
     {
         return orderItemService.getItemByorderId(orderId);
+    }
+
+    @PostMapping("/addorderitem")
+    @ApiOperation("添加订单明细")
+   /* @PreAuthorize("hasAnyAuthority('all')")*/
+    public OrderItem addOrderItem(@RequestBody OrderItem orderItem)
+    {
+        return orderItemService.addOrderItem(orderItem);
     }
 }

@@ -6,6 +6,7 @@ server:
 logging:
   level: debug
 
+
 # spring
 spring:
   datasource:

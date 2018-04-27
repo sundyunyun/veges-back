@@ -19,4 +19,6 @@ public interface OrderService {
     Order confirmOrderBycustomer(Long orderId);
     List<OrderlistView> getCurrentOrders();
     Order arrangeDriverForOrder(Long orderId,Long driverId);
+    Order addOrder(Order order);
+    Order addOrderDone(Long orderId,Double totalweight,Double totalprice);
 }

@@ -8,6 +8,7 @@
         <result property="price" column="price"/>
         <result property="des" column="des"/>
         <result property="state" column="state"/>
+        <result property="pth" column="pth"/>
 
         <result property="objectVersionNumber" column="OBJECT_VERSION_NUMBER"/>
         <result property="createdBy" column="CREATED_BY"/>
@@ -23,6 +24,10 @@
 
     <select id="selectVegesByName" resultMap="BaseMap">
         SELECT * FROM veges WHERE name=#{name}
+    </select>
+
+    <select id="getOnVeges" resultMap="BaseMap">
+        SELECT * FROM veges WHERE state="上架"
     </select>
 
     <!--<select id="selectByAuthor" resultMap="BaseMap">

@@ -40,4 +40,6 @@ public interface AppConst {
      */
     // TODO: 2018/2/13 密码的正则表达式需要完善
     String PASSWORD_REGULAR_EXPRESSION = "^[a-zA-Z0-9_]{6,18}$";
+
+    String basePath="F:\\tool\\ngix\\nginx-1.14.0\\html\\";
 }

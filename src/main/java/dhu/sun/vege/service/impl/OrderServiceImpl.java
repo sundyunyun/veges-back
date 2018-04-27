@@ -206,4 +206,35 @@ public class OrderServiceImpl implements OrderService {
           return null;
       }
   }
+
+  @Override
+    public Order addOrder(Order order)
+  {
+      try{
+          order.setCreationDate(new Date());
+          orderMapper.insertUseGeneratedKeys(order);
+          return orderMapper.selectByPrimaryKey(order.getId());
+      }catch (Exception e)
+      {
+          return null;
+      }
+  }
+
+  @Override
+    public Order addOrderDone(Long orderId,Double totalweight,Double totalprice)
+  {
+      try{
+          Order order=orderMapper.selectByPrimaryKey(orderId);
+          order.setState("订单已完成");
+          order.setLastUpdateDate(new Date());
+          order.setTotalprice(totalprice);
+          order.setTotalweight(totalweight);
+          orderMapper.updateByPrimaryKey(order);
+
+          return orderMapper.selectByPrimaryKey(orderId);
+      }catch (Exception e)
+      {
+          return null;
+      }
+  }
 }
