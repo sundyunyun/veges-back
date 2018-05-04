@@ -23,14 +23,14 @@ public class ImportItemController {
 
     @PostMapping("/addimportitem")
     @ApiOperation("添加一条进货单详情")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('buyer')")
     public ImportItem addImportItem(@RequestBody ImportItem importItem){
         return importItemService.addImportItem(importItem);
     }
 
     @GetMapping("/getbyimpoId")
     @ApiOperation("根据importId获取详情记录")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('buyer','office','keeper','driver')")
     public List<ImportItem> getAllByImportId(@RequestParam Long importId){
         return importItemService.getAllByImportId(importId);
     }

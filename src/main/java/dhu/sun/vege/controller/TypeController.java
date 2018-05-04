@@ -20,14 +20,14 @@ public class TypeController {
 
     @PostMapping("addtype")
     @ApiOperation("添加种类")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office')")
     public Type addType(@RequestBody Type type){
         return typeService.addType(type);
     }
 
     @GetMapping("getalltype")
     @ApiOperation("获取所有的蔬菜种类")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office','buyer','keeper','customer')")
     public List<Type> getAlltype(){
         return typeService.getAlltype();
     }

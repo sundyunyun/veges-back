@@ -21,14 +21,14 @@ public class InstoreItemController {
 
     @GetMapping("getallbyinstoreId")
     @ApiOperation("根据instore入库单id获取详情")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office','keeper')")
     public List<InstoreItem> getAllByinstoreId(@RequestParam Long instoreId){
         return instoreItemService.getAllByinstoreId(instoreId);
     }
 
     @PostMapping("/addinstoreitem")
     @ApiOperation("添加一条入库详情")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('keeper')")
     public InstoreItem instoreItem(@RequestBody InstoreItem instoreItem){
         return instoreItemService.addInstoreItem(instoreItem);
     }

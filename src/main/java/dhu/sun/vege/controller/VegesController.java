@@ -28,7 +28,7 @@ public class VegesController {
 
     @GetMapping("/supplier/veges")
     @ApiOperation("根据获取供应商菜品信息")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('buyer','office')")
     public List<Veges> getVegesListBySupplierId(@RequestParam Long supplierId)
     {
         return vegesService.getVegesListBySupplierId(supplierId);
@@ -36,14 +36,14 @@ public class VegesController {
 
     @GetMapping("/allveges")
     @ApiOperation("获取数据库所有的蔬菜")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office','buyer','keeper')")
     public List<Veges> getAllVeges(){
         return vegesService.getAllVeges();
     }
 
     @PostMapping("/addveges")
     @ApiOperation("添加一条蔬菜")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office')")
     public Veges addVeges(@RequestBody Veges veges){
         return vegesService.addVeges(veges);
     }
@@ -51,7 +51,7 @@ public class VegesController {
 
     @GetMapping("/getvegesById")
     @ApiOperation("根据菜品Id获取蔬菜信息")
-   /* @PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office','buyer','customer','keeper','driver')")
     public Veges getVegesById(@RequestParam Long vegesId){
         return vegesService.getVegesById(vegesId);
     }
@@ -59,7 +59,7 @@ public class VegesController {
 
     @PutMapping("/changeveges")
     @ApiOperation("修改菜品信息")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office')")
     public Veges changeVeges(@RequestBody Veges veges)
     {
         return vegesService.changeVeges(veges);
@@ -68,7 +68,7 @@ public class VegesController {
 
     @GetMapping("/changeon")
     @ApiOperation("改菜品状态为上架，卖了")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office')")
     public Veges changeStateOn(@RequestParam Long vegesId)
     {
         return vegesService.changeStateOn(vegesId);
@@ -76,7 +76,7 @@ public class VegesController {
 
     @GetMapping("/changeoff")
     @ApiOperation("改菜品状态为下架，不卖了")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office')")
     public Veges changeStateOff(@RequestParam Long vegesId)
     {
         return vegesService.changeStateOff(vegesId);
@@ -84,13 +84,15 @@ public class VegesController {
 
     @GetMapping("/getonveges")
     @ApiOperation("获取所有在售的上架蔬菜")
-/*    @PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('customer')")
     public List<Vegeslist> getOnVeges()
     {
         return vegesService.getOnVeges();
     }
 
     @PostMapping("/file")
+    @ApiOperation("office上传蔬菜图片")
+    @PreAuthorize("hasAnyAuthority('office')")
     public String uploadFile(@RequestParam MultipartFile upload) {
        // String fileName=upload.getOriginalFilename();
 //        String path = "C:/Users/think/Desktop/imgs/";
@@ -121,7 +123,7 @@ public class VegesController {
 
     @GetMapping("/addvegespath")
     @ApiOperation("为新添加的蔬菜根据蔬菜id添加图片路径")
-  /*  @PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office')")
     public Veges addVegesPath(@RequestParam Long vegesId,@RequestParam String pth)
     {
         return vegesService.addVegesPath(vegesId,pth);

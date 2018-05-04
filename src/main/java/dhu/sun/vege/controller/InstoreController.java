@@ -21,28 +21,28 @@ public class InstoreController {
 
     @GetMapping("/getallinstorelist")
     @ApiOperation("获取所有入库单信息")
-   /* @PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office')")
     public List<InstorelistView> getAllInstorelist(){
         return instoreService.getAllInstorelist();
     }
 
     @GetMapping("getallinstorebystoreid")
     @ApiOperation("根据仓库id获取该仓库的入库单信息")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('keeper')")
     public List<InstorelistView> getAllinstoreBystoreId(@RequestParam Long storeId){
         return instoreService.getAllinstoreBystoreId(storeId);
     }
 
     @PostMapping("/addinstore")
     @ApiOperation("添加一条入库单")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('keeper')")
     public Instore addInstore(@RequestBody Instore instore){
         return instoreService.addInstore(instore);
     }
 
     @GetMapping("/addinstoredone")
     @ApiOperation("添加入库单成功，修改入库单状态为入库完成")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('keeper')")
     public Instore addInstoreDone(@RequestParam Long instoreId){
         return instoreService.addInstoreDone(instoreId);
     }

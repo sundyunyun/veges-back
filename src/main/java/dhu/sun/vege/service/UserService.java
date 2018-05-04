@@ -59,4 +59,6 @@ public interface UserService {
 
     User addToBlack(Long id);
 
+    User changeState(Long id);
+
 }

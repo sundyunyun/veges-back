@@ -25,21 +25,21 @@ public class StoreItemController {
 
     @GetMapping("/getitembystore")
     @ApiOperation("根据仓库id获取仓库菜品信息")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('keeper','office')")
     public List<StoreItem> getStoreItemBystoreId(@RequestParam Long storeId){
         return storeItemService.getStoreItemBystoreId(storeId);
     }
 
     @GetMapping("/delstoreitemByid")
     @ApiOperation("根据id删除明细")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('keeper','office')")
     public String delStoreitemByid(@RequestParam Long storeitemId){
         return storeItemService.delStoreitemByid(storeitemId);
     }
 
     @GetMapping("updatestoreitem")
     @ApiOperation("修改仓库某一明细，数量")
-   /* @PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('keeper')")
     public StoreItem updateStoreItemByid(@RequestParam Long storeitemId,@RequestParam Double number){
         return storeItemService.updateStoreitemByid(storeitemId,number);
     }

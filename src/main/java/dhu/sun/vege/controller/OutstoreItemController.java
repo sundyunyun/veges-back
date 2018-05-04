@@ -20,14 +20,14 @@ public class OutstoreItemController {
 
     @GetMapping("/getallByoutstoreId")
     @ApiOperation("根据出库单id获取出库明细")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('keeper','office')")
     public List<OutstoreItem> getAllitemByoutstoreId(@RequestParam Long outstoreId){
         return outstoreItemService.getAllitemByoutstoreId(outstoreId);
     }
 
     @PostMapping("/addoutstoreitem")
     @ApiOperation("生成一条出库明细")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('keeper')")
     public OutstoreItem addOutstoreItem(@RequestBody OutstoreItem outstoreItem)
     {
         return outstoreItemService.addOutstoreItem(outstoreItem);

@@ -54,8 +54,8 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("藏品管理系统的RESTful APIs文档")
-                .contact("Tan Jie")
+                .title("鲜蔬配送管里系统的RESTful APIs文档")
+                .contact("Sun")
                 .version("1.0")
                 .build();
     }

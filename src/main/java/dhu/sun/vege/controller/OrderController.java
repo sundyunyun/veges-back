@@ -25,15 +25,15 @@ public class OrderController {
 
     @GetMapping("/getallorder")
     @ApiOperation("获取所有订单信息")
-   /* @PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office')")
     public List<OrderlistView> getAll()
     {
         return orderService.getAll();
     }
 
     @GetMapping("/getorderById")
-    @ApiOperation("根据订单id获取订单")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+   @ApiOperation("根据订单id获取订单")
+   @PreAuthorize("hasAnyAuthority('keeper')")
     public OrderlistView getOrderById(@RequestParam Long orderId)
     {
         return orderService.getOrderById(orderId);
@@ -41,7 +41,7 @@ public class OrderController {
 
     @GetMapping("/getorderBydriverId")
     @ApiOperation("根据司机id查询司机历史出货单")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('driver')")
     public List<OrderlistView> getOrdersBydriverId(@RequestParam Long driverId)
     {
         return orderService.getOrdersBydriverId(driverId);
@@ -49,7 +49,7 @@ public class OrderController {
 
     @GetMapping("/confimBydriver")
     @ApiOperation("司机确认送达订单给客户")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('driver')")
     public Order confirmOrderBydriver(@RequestParam Long orderId)
     {
         return orderService.confirmOrderBydriver(orderId);
@@ -57,7 +57,7 @@ public class OrderController {
 
     @GetMapping("/getcurrentorders")
     @ApiOperation("根据司机id和订单待配送状态显示给司机页面")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('driver')")
     public List<OrderlistView> getCurrrentOrdersBydriver(@RequestParam Long driverId)
     {
         return orderService.getCurrentOrdersBydriver(driverId);
@@ -65,7 +65,7 @@ public class OrderController {
 
     @GetMapping("/getordersBycustomerId")
     @ApiOperation("根据客户id查询历史订单")
-   /* @PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('customer')")
     public List<OrderlistView> getOrdersBycustomerId(@RequestParam Long custId)
     {
         return orderService.getOrdersBycustId(custId);
@@ -73,7 +73,7 @@ public class OrderController {
 
     @GetMapping("/orderdonebycust")
     @ApiOperation("客户确认收货修改订单状态为客户确认收货")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('customer')")
     public Order confirmOrderBycustomer(@RequestParam Long orderId)
     {
         return orderService.confirmOrderBycustomer(orderId);
@@ -81,7 +81,7 @@ public class OrderController {
 
     @GetMapping("getcurrentorderBycust")
     @ApiOperation("/采购员查看当前客户已下好的订单，根据订单状态“订单完成”显示，安排司机进行派送")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('buyer')")
     public List<OrderlistView> getCurrentOrders()
     {
         return orderService.getCurrentOrders();
@@ -89,7 +89,7 @@ public class OrderController {
 
     @GetMapping("arrangedriver")
     @ApiOperation("为订单安排司机并修改相关状态和订单内容")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('buyer')")
     public Order arrangeDriverForOrder(@RequestParam Long orderId,@RequestParam Long driverId)
     {
         return orderService.arrangeDriverForOrder(orderId,driverId);
@@ -97,7 +97,7 @@ public class OrderController {
 
     @PostMapping("/addorder")
     @ApiOperation("添加生成一条订单order")
-  /*  @PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('customer')")
     public Order addOrder(@RequestBody Order order)
     {
         return orderService.addOrder(order);
@@ -105,7 +105,7 @@ public class OrderController {
 
     @GetMapping("/addorderdone")
     @ApiOperation("订单生成成功，修改订单状态")
-  /*  @PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('customer')")
     public Order addOrderDone(@RequestParam Long orderId,@RequestParam Double totalweight,@RequestParam Double totalprice)
     {
         return orderService.addOrderDone(orderId,totalweight,totalprice);

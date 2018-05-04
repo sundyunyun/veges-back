@@ -21,7 +21,7 @@ public class StoreHouseController {
 
     @GetMapping("/getallstore")
     @ApiOperation("获取所有的仓库信息")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office')")
     public List<StoreHouse> getAllstoreInfo()
     {
         return storeHouseService.getAllstoreInfo();
@@ -30,7 +30,7 @@ public class StoreHouseController {
 
     @PostMapping("/addstore")
     @ApiOperation("添加一个仓库")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office')")
     public StoreHouse addStoreHouse(@RequestBody StoreHouse storeHouse)
     {
         return storeHouseService.addStoreHouse(storeHouse);
@@ -38,7 +38,7 @@ public class StoreHouseController {
 
     @GetMapping("/abandon")
     @ApiOperation("仓库废弃改状态为废弃")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('office')")
     public StoreHouse changeStoretoAbandon(@RequestParam Long storeId)
     {
         return storeHouseService.changeStoretoAbandon(storeId);

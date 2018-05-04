@@ -226,6 +226,21 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public User changeState(Long id)
+    {
+        try{
+            User user=userMapper.selectByPrimaryKey(id);
+            user.setState("空闲");
+            user.setLastUpdateDate(new Date());
+            userMapper.updateByPrimaryKey(user);
+            return userMapper.selectByPrimaryKey(id);
+        }catch (Exception e)
+        {
+            return null;
+        }
+    }
+
 
     /* @Autowired
     public AuthServiceImpl(

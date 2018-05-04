@@ -21,7 +21,7 @@ public class OrderItemController {
 
     @GetMapping("/getitemByorderid")
     @ApiOperation("根据订单id获取订单明细")
-    /*@PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('customer','office','driver','keeper','buyer')")
     public List<OrderItem> getItemByorderId(@RequestParam Long orderId)
     {
         return orderItemService.getItemByorderId(orderId);
@@ -29,7 +29,7 @@ public class OrderItemController {
 
     @PostMapping("/addorderitem")
     @ApiOperation("添加订单明细")
-   /* @PreAuthorize("hasAnyAuthority('all')")*/
+    @PreAuthorize("hasAnyAuthority('customer')")
     public OrderItem addOrderItem(@RequestBody OrderItem orderItem)
     {
         return orderItemService.addOrderItem(orderItem);
