@@ -1,7 +1,7 @@
 package dhu.sun.vege.util;
 
 /**
- * Created by LeiTao on 2017/11/15.
+ * Created by on 2017/11/15.
  */
 
 import com.github.pagehelper.Page;
@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by LeiTao on 2017/11/13.
+ * Created by  on 2017/11/13.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class PageInfo<T> implements Serializable {

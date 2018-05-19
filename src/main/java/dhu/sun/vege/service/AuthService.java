@@ -6,7 +6,7 @@ import dhu.sun.vege.model.view.LoginView;
 /**
  * 身份认证服务
  *
- * @author Tan Jie
+ * @author
  * @date 2017/12/10
  */
 

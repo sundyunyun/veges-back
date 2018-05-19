@@ -9,7 +9,7 @@ import javax.persistence.*;
  * <p>
  * 和数据库严格一一对应
  *
- * @author Tan Jie
+ * @author
  * @date 2017/12/6
  */
 @Table(name = "sys_user")

@@ -12,7 +12,7 @@ import java.util.UUID;
 /**
  * 文件上传工具类
  *
- * @author Tan Jie
+ * @author Think
  * @date 2017/11/14
  */
 public class FileTools {

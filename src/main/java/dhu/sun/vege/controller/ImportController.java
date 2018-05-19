@@ -63,7 +63,7 @@ public class ImportController {
 
     @GetMapping("/getcurrentimpo")
     @ApiOperation("根据司机id获取该司机当前进货单")
-    @PreAuthorize("hasAnyAuthority('keeper')")
+    @PreAuthorize("hasAnyAuthority('keeper','driver')")
     public ImpolistView getCurrentImpoBydrivId(@RequestParam Long driverId){
         return importService.getCurrentImpoByDrivId(driverId);
     }

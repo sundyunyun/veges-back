@@ -36,7 +36,7 @@ public class VegesController {
 
     @GetMapping("/allveges")
     @ApiOperation("获取数据库所有的蔬菜")
-    @PreAuthorize("hasAnyAuthority('office','buyer','keeper')")
+    @PreAuthorize("hasAnyAuthority('office','buyer','keeper','driver')")
     public List<Veges> getAllVeges(){
         return vegesService.getAllVeges();
     }

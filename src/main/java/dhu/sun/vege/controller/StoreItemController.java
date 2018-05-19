@@ -39,7 +39,7 @@ public class StoreItemController {
 
     @GetMapping("updatestoreitem")
     @ApiOperation("修改仓库某一明细，数量")
-    @PreAuthorize("hasAnyAuthority('keeper')")
+    @PreAuthorize("hasAnyAuthority('keeper','office')")
     public StoreItem updateStoreItemByid(@RequestParam Long storeitemId,@RequestParam Double number){
         return storeItemService.updateStoreitemByid(storeitemId,number);
     }

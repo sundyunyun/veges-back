@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * 用户管理
  *
- * @author Tan Jie
+ * @author
  * @date 2017/12/7
  */
 // TODO: 2018/2/13 完成后进行权限控制的调试
@@ -85,7 +85,7 @@ public class UserController {
      */
     @GetMapping("/user")
     @ApiOperation(("根据id获取用户信息"))
-    @PreAuthorize("hasAnyAuthority('keeper')")
+    @PreAuthorize("hasAnyAuthority('keeper','office','buyer','customer')")
     public User getOneUser(@RequestParam Long id) {
         return userService.getUserById(id);
     }

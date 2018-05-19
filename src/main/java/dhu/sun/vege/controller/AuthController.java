@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * /api/public路径下为开放接口,不需要身份验证
  *
- * @author Tan Jie
+ * @author
  * @date 2017/12/7
  */
 @RestController

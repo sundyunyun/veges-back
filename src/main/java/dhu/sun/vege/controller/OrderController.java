@@ -25,7 +25,7 @@ public class OrderController {
 
     @GetMapping("/getallorder")
     @ApiOperation("获取所有订单信息")
-    @PreAuthorize("hasAnyAuthority('office')")
+    @PreAuthorize("hasAnyAuthority('office','buyer')")
     public List<OrderlistView> getAll()
     {
         return orderService.getAll();
@@ -33,7 +33,7 @@ public class OrderController {
 
     @GetMapping("/getorderById")
    @ApiOperation("根据订单id获取订单")
-   @PreAuthorize("hasAnyAuthority('keeper')")
+   @PreAuthorize("hasAnyAuthority('keeper','driver')")
     public OrderlistView getOrderById(@RequestParam Long orderId)
     {
         return orderService.getOrderById(orderId);

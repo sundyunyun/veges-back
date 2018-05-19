@@ -1,7 +1,7 @@
 package dhu.sun.vege.exception;
 
 /**
- * Created by LeiTao on 2017/11/15.
+ * Created by Think on 2017/11/15.
  */
 public class HapException extends RuntimeException {
     private final transient Object[] parameters;

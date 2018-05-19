@@ -9,7 +9,7 @@ import javax.persistence.Table;
 /**
  * 角色表
  *
- * @author Tan Jie
+ * @author
  * @date 2017/12/9
  */
 @Table(name = "sys_auth")
